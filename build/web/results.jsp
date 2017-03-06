@@ -1,11 +1,13 @@
 
 
+<%@page import="org.apache.jasper.tagplugins.jstl.core.If"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>User Information</title>
+        <link rel="stylesheet" href="\\home.iowa.uiowa.edu\ajpowell\NetBeansProjects\Homework\styles2.css">
     </head>
     <%
         
@@ -13,16 +15,55 @@
         int hourlyPay = Integer.parseInt(request.getParameter("pay"));
         int pre = Integer.parseInt(request.getParameter("deduct"));
         int post = Integer.parseInt(request.getParameter("deduct2"));
-        int overtime = 0;
-        int overPay = 0;
-        int grossPay = 0;
-        int taxAmt = 0;
-        int postAmt = 0;
-        int netPay = 0;
+        double overRate = (double)hourlyPay * 1.5;
+        double grossPay;
+        double overtime = hoursWorked - 40;
         
+        double overPay = (double) overtime * overRate;
+        double taxAmt;
+        
+        
+    
+        
+        
+        
+        
+        
+        if (hoursWorked > 40)
+                {
+                   
+                   
+                   
+                   
+                  grossPay = (overtime * overRate) + (40 * (double)hourlyPay);
+                   
+                }
+        else
+                {
+                   grossPay = hoursWorked * hourlyPay;
+                }
+        
+
+       double taxPay = grossPay - pre;
+       
+        
+        if (grossPay < 500)
+         {
+           taxAmt = taxPay * .18;
+            
+         }
+        else
+         {
+            
+           taxAmt = taxPay * .22;
+         }
+        
+        int postAmt = (int)taxPay - (int)taxAmt;
+        int netPay = (int)postAmt - post;
         %>
     <body>
         <h1>Salary Info</h1>
+        <hr>
         
         <table>
             <tbody>
@@ -38,12 +79,12 @@
                 
                 <tr>
                     <td># Hours Overtime:</td>
-                    <td><%= overtime%></td>
+                    <td><%= overtime %></td>
                 </tr>
                 
                 <tr>
                     <td>Overtime Hourly Rate:</td>
-                    <td><%= overPay%></td>
+                    <td><%= overPay %></td>
                 </tr>
                 
                 <tr>
