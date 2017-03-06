@@ -10,9 +10,11 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Al Powell</title>
+        <link rel="stylesheet" href="\\home.iowa.uiowa.edu\ajpowell\NetBeansProjects\Homework\styles.css">
     </head>
     <body>
         <h1>Simple Salary Calculator</h1>
+        <hr>
         
         <form name="demoForm" action="results.jsp" method="post">
             <table>
